@@ -46,39 +46,39 @@ public class MainActivity extends AppCompatActivity {
             // Handles sorting of the listID and Name
             Collections.sort(list, new Comparator<JSONObject>() {
 
-                String KEY_NAME = "listId";
-                String KEY_NAME2 = "name";
+                String listId = "listId";
+                String names = "name";
 
                 @Override
                 public int compare(JSONObject a, JSONObject b) {
-                    String str1;
-                    String str2;
-                    String str3 = "";
-                    String str4 = "";
+                    String lid1;
+                    String lid2;
+                    String name1 = "";
+                    String name2 = "";
 
                     try {
-                        str1 = (String) a.get(KEY_NAME).toString();
-                        str2 = (String) b.get(KEY_NAME).toString();
+                        lid1 = (String) a.get(listId).toString();
+                        lid2 = (String) b.get(listId).toString();
 
-                        int number = str1.compareTo(str2);
+                        int number = lid1.compareTo(lid2);
 
                         if (number != 0) {
                             return number;
                         }
 
-                        str3 = (String) a.get(KEY_NAME2).toString().replace("Item", "").trim();
-                        str4 = (String) b.get(KEY_NAME2).toString().replace("Item", "").trim();
+                        name1 = (String) a.get(names).toString().replace("Item", "").trim();
+                        name2 = (String) b.get(names).toString().replace("Item", "").trim();
 
 
                     } catch(JSONException e) {
                         e.printStackTrace();
                     }
                     try {
-                        return Integer.valueOf(str3).compareTo(Integer.valueOf(str4));
+                        return Integer.valueOf(name1).compareTo(Integer.valueOf(name2));
                     } catch (NumberFormatException n) {
                         n.printStackTrace();
                     }
-                    return str3.compareTo(str4);
+                    return name1.compareTo(name2);
                 }
             });
 
